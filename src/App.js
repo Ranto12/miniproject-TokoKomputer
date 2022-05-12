@@ -13,6 +13,7 @@ import Login from "./pages/Login/Login";
 import Cart from "./pages/Cart/Cart";
 import Products from "./component/Product/Products";
 import Nilai from './component/apollo Client/Query'
+import CreateProduct from "./component/CreateProduct/CreateProduct";
 function App() {
   const user = true
   return (
@@ -27,14 +28,9 @@ function App() {
         <Route path="login/" element={<Login />} />
         <Route path="register/" element={<Register />} />
         <Route path="cart/" element={<Cart />} />
-        {/* <Route path="/login" element={<Navigate replace to="/" />} />
-        <Route path="/register" element={<Navigate replace to="/" />} /> */}
-       
-        
       </Routes>
     </Router>
-  // <Nilai/>
-
+    // <CreateProduct/>
   )
 }
 

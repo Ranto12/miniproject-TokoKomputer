@@ -3,8 +3,10 @@ import { Search, ShoppingCartOutlined } from '@material-ui/icons';
 import React from 'react'
 import styled from 'styled-components'
 import { mobile } from '../../respondsive';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
+
     height: 60px;
   ${mobile({backgroundColor: "red"})}
 `;
@@ -54,7 +56,10 @@ const MenuItems = styled.div`
     cursor: pointer;
     margin-left: 25px;
 `
-
+const LINK = styled(Link)`
+    text-decoration: none;
+    color: black;
+`
 
 const Navbar = () => {
   return (
@@ -74,14 +79,25 @@ const Navbar = () => {
             </Center>
             <Right>
                 <MenuItems>
-                    SIGN IN
+                <LINK to='/products'>
+                    PRODUCT
+                </LINK>
                 </MenuItems>
                 <MenuItems>
-                    REGISTER
+                <LINK to='/login'>
+                    SIGN IN
+                </LINK>
+                </MenuItems>
+                <MenuItems>
+                <LINK to='/register'>
+                REGISTER
+                </LINK>
                 </MenuItems>
                 <MenuItems>
                 <Badge badgeContent={10} color="primary">
-                    <ShoppingCartOutlined />
+                <LINK to='/cart'>
+                <ShoppingCartOutlined />
+                </LINK>    
                 </Badge>
                 </MenuItems>
             </Right>

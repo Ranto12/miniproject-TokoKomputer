@@ -1,4 +1,7 @@
+import { gql } from '@apollo/client';
+import { useState } from 'react';
 import styled from 'styled-components';
+ import { useMutation } from '@apollo/client';
 
 const Container = styled.div`
     width: 100vw;
@@ -42,26 +45,68 @@ const Button = styled.button`
 
 
 const Register = () => {
+    const [values, setValues] = useState({
+        nama : '',
+        lastName: '',
+        userName: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        
+    })
+
+    const onChange =(e)=>{
+        setValues({ ...values, [e.target.name]: e.target.value})
+    }
+
+
+    const onSubmit = (e)=>{
+        e.preventDefault();
+    }
   return (
     <Container>
         <Wrapper>
         <Title>CREATE ACCOUNT</Title>
-        <Form>
-            <Input placeholder='name' />
-            <Input placeholder='last Name' />
-            <Input placeholder='UserName' />
-            <Input placeholder='email' />
-            <Input placeholder='password' />
-            <Input placeholder='confirm password' />
-          
+        <Form onSubmit={onSubmit} noValidate>
+            <Input name='nama' type="text" value={values.name} placeholder='name' onChange={onChange}/>
+            <Input name='lastName' type="text" value={values.lastName} placeholder='lastName' onChange={onChange} />
+            <Input name='userName' value={values.userName} placeholder='UserName' onChange={onChange} />
+            <Input name='email' value={values.email} placeholder='email' onChange={onChange} />
+            <Input name='password' type='password' value={values.password} placeholder='password' onChange={onChange} />
+            <Input name='confirmPassword' type='password' value={values.confirmPassword} placeholder='confirm password' onChange={onChange} />
+            
             <Agreement>
                 By Create an account, I consent to the processing of my personal data in according with the <b>PRIVACY POLICY</b>
             </Agreement>
-            <Button>CREATE ACOOUNT</Button>
+            <Button type='submit' primary>CREATE ACOOUNT</Button>
         </Form>
         </Wrapper>
     </Container>
   )
 }
+
+// const REGISTER_USER =gql`
+//     mutation register(
+//         $name: String!
+//         $lastName: String!
+//         $userName: String!
+//         $email: String!
+//         $password: String!
+//         $confirmPassword: String!
+//     ){
+//         register:(
+//         registerInput:{
+//         name: $name
+//         lastName: $lastName
+//         userName: $userName
+//         email: $email
+//         password: $password
+//         confirmPassword: $confirmPassword
+//         }
+//         ){
+//             id email username createdAt token
+//         }
+//     }
+// `
 
 export default Register
