@@ -6,6 +6,8 @@ import {
     from,
 } from "@apollo/client";
 import {onError} from '@apollo/client/link/error';
+import Form from "./Component/CreateUser/Form";
+import GetUsers from "./Component/GetUsers";
  
 const errorLink = onError(({graphqlErrors, networkError})=>{
     if(graphqlErrors){
@@ -27,7 +29,10 @@ const client = new ApolloClient({
 
 
 const index = () => {
-  return <ApolloProvider client={client}> </ApolloProvider>
+  return <ApolloProvider client={client}> 
+  <GetUsers/>
+  <Form/>
+  </ApolloProvider>
 }
 
 export default index
