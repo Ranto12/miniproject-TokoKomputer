@@ -45,11 +45,11 @@ const ProductList = () => {
     const [filter, setFilter] = useState({})
     const [sort, setSort] = useState({})
 
-
+ 
     const handleFilter = (e)=>{
         const value = e.target.value;
         setFilter({
-            // ...filter,
+            ...filter,
             [e.target.value]: value
         })
     }
@@ -79,13 +79,14 @@ const ProductList = () => {
                     <Option>Lenovo</Option>
                     <Option>Dell</Option>
                 </Select>
-                {/* <Select name='price' onChange={handleFilter}>
+                <Select name='color' onChange={handleFilter}>
                     <Option disabled selected>Harga</Option>
-                    <Option>5jt</Option>
-                    <Option>5-10jt</Option>
-                    <Option>10-15jt</Option>
-                    <Option>16-20jt</Option>
-                </Select> */}
+                    <Option>blue</Option>
+                    <Option>red</Option>
+                    <Option>silver</Option>
+                    <Option>white</Option>
+                    <Option>black</Option>
+                </Select>
             </Filter>
             <Filter>
                 <FilterText>Sort Product:</FilterText>

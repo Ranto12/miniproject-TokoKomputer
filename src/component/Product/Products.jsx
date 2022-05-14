@@ -4,6 +4,7 @@ import styled from "styled-components"
 // import { popularProducts } from "../Data"
 import Product from './Product'
 import { GetProductList } from "../apollo Client/Query";
+import Navbar from "../Navbar/Navbar";
 
 
 const Container = styled.div`
@@ -25,40 +26,27 @@ const Loading = styled.div`
 function Products ({cat, filter, sort }){
   console.log(cat, filter, sort);
 
-  const {error, data,loading} = useQuery(GetProductList);
+  const{error, data,loading} = useQuery(GetProductList);
   if(loading) return <Loading>spinner...</Loading>
   if (error) return <Loading>Somting went wrong</Loading>
 
   // useState
   // const [products, setProducts] = useState([]);
-  // const [filter, setFilter] = useState([]);
-  // console.log(data.TokoKomputer_Products)
-    return(
+  // const [filteredproducts, setFilterProducts] = useState([]);
+  // // console.log(data.TokoKomputer_Products)
+  // useEffect(()=>{
+    
+  // },[cat]);
+      return(
+        <>
+        <Navbar/>
       <Container>
-        {data.TokoKomputer_Products.map(item=>(
+        { data.TokoKomputer_Products.map(item=>(
             <Product item={item} key={item.id} />
         ) )}
       </Container>
+      </>
     )
-
-
-
-
-
-
-  //usestate
-  // const [products, setProducts] = useState([]);
-  // const [filterProducts, setFilterProducts] = useState([]);
-
-
-  // return (
-  //   <Container>
-  //     <Product item={item} key={key} />
-  //       {popularProducts.map((item)=>(
-  //           <Product item={item} key={item.id} />
-  //       ))}
-  //   </Container>
-  // )
 }
 
 export default Products

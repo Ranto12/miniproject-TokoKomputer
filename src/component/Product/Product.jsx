@@ -1,6 +1,8 @@
 import {  FavoriteBorderOutlined, SearchOutlined, ShoppingCartOutlined } from '@material-ui/icons'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useParams } from 'react-router';
 
 
 const Info = styled.div`
@@ -66,6 +68,11 @@ transition: all 0.5s ease;
 
 
 function Product({item}) {
+  const {id} = useParams();
+  useEffect(()=>{
+    console.log(`id router ${id}`)
+  })
+
   console.log(item.id)
   return (
     <Container>
@@ -76,7 +83,7 @@ function Product({item}) {
           <ShoppingCartOutlined />
         </Icon>
         <Icon>
-          <Link to={`/product/${item._id}`}>
+          <Link to={`/product/${item.id}`}>
           <SearchOutlined/>
           </Link>
         </Icon>

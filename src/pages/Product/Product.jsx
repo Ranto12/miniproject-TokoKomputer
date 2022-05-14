@@ -4,6 +4,8 @@ import Announcement from '../../component/Anouncement/Anouncement'
 import Newslleter from '../../component/Newsletter/Newsletter';
 import Footer from '../../component/Footer/Footer'
 import { Add, Remove } from '@material-ui/icons';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 
 const Container =styled.div`
@@ -66,8 +68,29 @@ const Button = styled.button`
     font-weight: 500;
 `;
 
+const Klik = styled.div`
+
+`;
+
+const Increment = styled.div`
+cursor: pointer;
+`;
 
 const Product = () => {
+    const [count, setCount] = useState(1);
+
+    const handleCounter = () =>{
+        setCount(count + 1);
+    }
+    const handleCounterDecrement = () =>{
+        setCount(count - 1)
+    }
+
+const handleSubmitAddCart = () =>{
+    <>
+    </>
+}
+
   return (
     <Container>
         <Navbar/>
@@ -86,10 +109,18 @@ const Product = () => {
                 </Price>
                 <AddContainer>
                 <AmountContainer>
+                <Increment>
+                    <Klik onClick={handleCounterDecrement}>
                     <Remove/>
-                    <Amount>1</Amount>
-                    <Add/>
-                    <Button>Tambahkan Keranjang</Button>
+                    </Klik>
+                    </Increment>
+                    <Amount>{count}</Amount>
+                    <Increment>
+                    <Klik onClick={handleCounter}>
+                    <Add />
+                    </Klik>
+                    </Increment>
+                    <Button onSubmit={handleSubmitAddCart}>Tambahkan Keranjang</Button>
                 </AmountContainer>
             </AddContainer>
             </InfoContainer>
