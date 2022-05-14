@@ -23,13 +23,35 @@ query MyQuery {
 // }
 // `;
 
-export const InsetUsers = gql`
-  mutation MyMutation($object: Users_user_insert_input!) {
+export const addUsers = gql`
+  mutation addUsers($object: Users_user_insert_input!) {
   insert_Users_user_one(object: $object) {
     id
   }
 }
 `
+
+export const ADD_USERS = gql`
+  mutation AddUsers(
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+    $password: String
+  ){
+    addUsers(
+      firstName: $firstName
+      lastName: $lastName
+      email: $email
+      password: $password
+    ){
+      id
+      firstName
+      lastName
+      email
+      password
+    }
+  }
+`;
 
 // export const GetUsersList = gql`
 //   query MyQuery {

@@ -1,7 +1,8 @@
-import { gql } from '@apollo/client';
 import { useState } from 'react';
 import styled from 'styled-components';
  import { useMutation } from '@apollo/client';
+import { ADD_USERS } from '../../GraphQL/Mutation/Mutation';
+import FormPembeli from '../../component/FormPembelian/FormPembeli/FormPembeli';
 
 const Container = styled.div`
     width: 100vw;
@@ -20,7 +21,7 @@ const Wrapper = styled.div`
 const Title = styled.div`
     
 `;
-const Form = styled.div`
+const Form = styled.form`
     display: flex;
     flex-wrap: wrap;
 `;
@@ -45,68 +46,92 @@ const Button = styled.button`
 
 
 const Register = () => {
-    const [values, setValues] = useState({
-        nama : '',
-        lastName: '',
-        userName: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-        
+  const [inputs, setInputs] = useState([
+    {
+      name: "firtsName",
+      type: "text",
+      placeholder: "firtsName",
+      value: "",
+    },
+    {
+      name: "lastNama",
+      type: "text",
+      placeholder: "lastNama",
+      value: "",
+    },
+    {
+      name: "email",
+      type: "text",
+      placeholder: "email",
+      value: "",
+    },
+    {
+      name: "password",
+      type: "password",
+      placeholder: "password",
+      value: "",
+    }
+  ]);
+
+  const handleInput = (value, index) => {
+    const newInputs = inputs.map((input, inputIdx) => {
+      if (inputIdx === index) {
+        return { ...input, value: value };
+      }
+      return input;
+    });
+    setInputs(newInputs);
+  };
+
+  const [addUsers, {data, loading, error}]= useMutation(ADD_USERS, {
+    onCompleted: (data) => {
+      console.log(data)
+    }
+  });
+
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    addUsers({
+      variables: {
+        object :{
+          firstName : inputs[0].value,
+          lastNama : inputs[1].value,
+          email: inputs[2].value,
+          password: inputs[3].value,
+        }
+      }
     })
+  }
+   
 
-    const onChange =(e)=>{
-        setValues({ ...values, [e.target.name]: e.target.value})
-    }
-
-
-    const onSubmit = (e)=>{
-        e.preventDefault();
-    }
   return (
     <Container>
-        <Wrapper>
-        <Title>CREATE ACCOUNT</Title>
-        <Form onSubmit={onSubmit} noValidate>
-            <Input name='nama' type="text" value={values.name} placeholder='name' onChange={onChange}/>
-            <Input name='lastName' type="text" value={values.lastName} placeholder='lastName' onChange={onChange} />
-            <Input name='userName' value={values.userName} placeholder='UserName' onChange={onChange} />
-            <Input name='email' value={values.email} placeholder='email' onChange={onChange} />
-            <Input name='password' type='password' value={values.password} placeholder='password' onChange={onChange} />
-            <Input name='confirmPassword' type='password' value={values.confirmPassword} placeholder='confirm password' onChange={onChange} />
+      <Wrapper>
+      <Title>DATA BUYING</Title>
+
+    <Form onSubmit={handleSubmit}>
+      {inputs &&
+        inputs.map((input, inputIdx) => (
+          <div key={inputIdx} >
+            <label >{input.label}</label>
+            <Input
+              type={input.type}
+              placeholder={input.placeholder}
+              name={input.name}
+              value={input.value}
+              onChange={(e) => handleInput(e.target.value, inputIdx)}
+              required
+            />
             
-            <Agreement>
-                By Create an account, I consent to the processing of my personal data in according with the <b>PRIVACY POLICY</b>
-            </Agreement>
-            <Button type='submit' primary>CREATE ACOOUNT</Button>
-        </Form>
-        </Wrapper>
+          </div>
+        ))}
+        <Agreement>
+          By Create an account, I consent to the processing of my personal data in according with the <b>PRIVACY POLICY</b>
+        </Agreement>
+        <Button type='submit'>submit</Button>
+    </Form>
+    </Wrapper>
     </Container>
   )
 }
-
-// const REGISTER_USER =gql`
-//     mutation register(
-//         $name: String!
-//         $lastName: String!
-//         $userName: String!
-//         $email: String!
-//         $password: String!
-//         $confirmPassword: String!
-//     ){
-//         register:(
-//         registerInput:{
-//         name: $name
-//         lastName: $lastName
-//         userName: $userName
-//         email: $email
-//         password: $password
-//         confirmPassword: $confirmPassword
-//         }
-//         ){
-//             id email username createdAt token
-//         }
-//     }
-// `
-
 export default Register

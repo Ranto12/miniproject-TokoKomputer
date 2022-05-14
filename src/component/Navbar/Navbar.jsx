@@ -83,7 +83,7 @@ const Navbar = () => {
                     PRODUCT
                 </LINK>
                 </MenuItems>
-                <MenuItems>
+               {/*   <MenuItems>
                 <LINK to='/login'>
                     SIGN IN
                 </LINK>
@@ -92,7 +92,7 @@ const Navbar = () => {
                 <LINK to='/register'>
                 REGISTER
                 </LINK>
-                </MenuItems>
+                </MenuItems>*/}
                 <MenuItems>
                 <Badge badgeContent={10} color="primary">
                 <LINK to='/cart'>
