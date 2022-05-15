@@ -4,7 +4,7 @@ import Announcement from '../../component/Anouncement/Anouncement'
 import Products from '../../component/Product/Products';
 import Newslleter from '../../component/Newsletter/Newsletter';
 import Footer from '../../component/Footer/Footer'
-import { useLocation } from 'react-router';
+import { useLocation, useParams } from 'react-router';
 import { useState } from 'react';
 
 const Container = styled.div`
@@ -40,8 +40,7 @@ const Option = styled.option`
 const ProductList = () => {
     //uselocation hook
     const location = useLocation();
-    // console.log(location.pathname.split("/")[2])
-    const cat = location.pathname.split("/")[2];
+    const cat = location.pathname.split("/"[2]);
     const [filter, setFilter] = useState({})
     const [sort, setSort] = useState({})
 
@@ -49,7 +48,7 @@ const ProductList = () => {
     const handleFilter = (e)=>{
         const value = e.target.value;
         setFilter({
-            ...filter,
+            ...filter, 
             [e.target.value]: value
         })
     }

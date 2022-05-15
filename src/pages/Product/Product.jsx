@@ -5,7 +5,9 @@ import Newslleter from '../../component/Newsletter/Newsletter';
 import Footer from '../../component/Footer/Footer'
 import { Add, Remove } from '@material-ui/icons';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { GetProductById, GetProductList } from '../../component/apollo Client/Query';
+import {  useQuery } from '@apollo/client';
+import {useLocation, useParams} from 'react-router';
 
 
 const Container =styled.div`
@@ -69,15 +71,40 @@ const Button = styled.button`
 `;
 
 const Klik = styled.div`
-
+cursor: pointer;
 `;
 
 const Increment = styled.div`
 cursor: pointer;
 `;
 
+const Total = styled.span`
+    
+`;
+
+
 const Product = () => {
+    const { id } = useParams();
+
     const [count, setCount] = useState(1);
+    
+    const {data, error, loading} = useQuery(GetProductById,{variables:{
+        _eq : id
+    }
+    // onCompleted: (data)=>{
+    //     console.log("complate" + data);
+    // }
+   });
+    if(loading) return <h1>spinner...</h1>
+    if(error) return <h1>ini eror</h1>
+
+
+    console.log(data.TokoKomputer_Products)
+    const img = data.TokoKomputer_Products[0].img;
+    const nama =  data.TokoKomputer_Products[0].nama;
+    const spesifikasi =  data.TokoKomputer_Products[0].spesifikasi;
+    const price =  data.TokoKomputer_Products[0].price;
+    // console.log(nama)
 
     const handleCounter = () =>{
         setCount(count + 1);
@@ -86,26 +113,27 @@ const Product = () => {
         setCount(count - 1)
     }
 
-const handleSubmitAddCart = () =>{
-    <>
-    </>
-}
+    const Total = price * count;
 
   return (
+      
     <Container>
         <Navbar/>
         <Announcement/>
         <Wrapper>
-            <ImgContainer>
-                <Image src="https://i.ibb.co/YWQB1L6/kisspng-laptop-acer-aspire-intel-core-i5.png"/>
+            <ImgContainer >
+                <Image src= {img} />
             </ImgContainer>
             <InfoContainer>
-                <Title>Laptop acer Nitro</Title>
+                <Title>{nama}</Title>
                 <Desc>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis recusandae repellendus accusamus deserunt laboriosam eum pariatur possimus nostrum nihil inventore dolor, repudiandae quam. Dolorum rerum fugit obcaecati architecto reiciendis perspiciatis. Quisquam cum quidem numquam, quis nemo similique? Facere explicabo deleniti, sint aut adipisci nostrum? Explicabo, reiciendis maxime? Eveniet, facere fugit.
+                    {spesifikasi}
                 </Desc>
                 <Price>
-                    Rp.16.400.000
+                    {price.toLocaleString("id-ID", {
+                          style: "currency",
+                          currency: "IDR",
+                        })}
                 </Price>
                 <AddContainer>
                 <AmountContainer>
@@ -120,9 +148,17 @@ const handleSubmitAddCart = () =>{
                     <Add />
                     </Klik>
                     </Increment>
-                    <Button onSubmit={handleSubmitAddCart}>Tambahkan Keranjang</Button>
+                    {/* <Button onSubmit={onSubmitSearch}>cari</Button> */}
+                    <Button onSubmit={()=>{}}>Tambahkan Keranjang</Button>
                 </AmountContainer>
+                <Title>
+                    {Total.toLocaleString("id-ID", {
+                          style: "currency",
+                          currency: "IDR",
+                        })}
+                </Title>
             </AddContainer>
+            
             </InfoContainer>
         </Wrapper>
         {/* <Newslleter/> */}

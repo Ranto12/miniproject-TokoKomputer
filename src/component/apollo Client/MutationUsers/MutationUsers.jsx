@@ -1,78 +1,7 @@
 import { useMutation, useQuery } from "@apollo/client"
 import { useState } from "react";
 import Index from "./Index";
-import { GetUsersList, InsetUsers , ADD_USERS} from "../Query"
-
-
-
-
-// const MutationUsers = () => {
-//   const [firstName, setFirtsName] = useState("");
-//   const [lastName, setLastName] = useState("");
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-  
-//   const [createUser, {error}] = useMutation(InsetUsers);
-
-//   const addUser = () => {
-//       createUser({
-//         variables: {
-//           firstName: firstName,
-//           lastName: lastName,
-//           email: email,
-//           password: password,
-//         },
-//       });
-//       if (error) {
-//         console.log(error);
-//       }
-//     };
-
-// return (
-//   <div>
-//       <input 
-//       type="text"
-//       placeholder='Fisrt Name'
-//       onChange= {(e)=>{
-//           setFirtsName(e.target.value);
-//       }}
-//       />
-
-//       <input 
-//       type="text"
-//       placeholder='Last Name'
-//       onChange= {(e)=>{
-//           setLastName(e.target.value);
-//       }}
-//       />
-//       <input 
-//       type="text"
-//       placeholder='Email'
-//       onChange= {(e)=>{
-//           setEmail(e.target.value);
-//       }}
-//       />
-//       <input 
-//       type="password"
-//       placeholder='pasword'
-//       onChange= {(e)=>{
-//           setPassword(e.target.value);
-//       }}
-//       />
-//       <button onClick={addUser}>
-//       Create users
-//       </button>
-//     </div>
-// )
-// }
-
-// export default MutationUsers
-
-
-
-// import { useMutation } from "@apollo/client";
-// import { useState } from "react";
-// import { ADD_USERS } from "../Query";
+import {  ADD_USERS} from "../Query"
 
 
 const MutationUsers = () => {

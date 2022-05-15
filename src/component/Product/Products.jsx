@@ -12,7 +12,6 @@ const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-
 `;
 
 const Loading = styled.div`
@@ -26,22 +25,15 @@ const Loading = styled.div`
 function Products ({cat, filter, sort }){
   console.log(cat, filter, sort);
 
-  const{error, data,loading} = useQuery(GetProductList);
+  const {error, data,loading} = useQuery(GetProductList);
   if(loading) return <Loading>spinner...</Loading>
   if (error) return <Loading>Somting went wrong</Loading>
 
-  // useState
-  // const [products, setProducts] = useState([]);
-  // const [filteredproducts, setFilterProducts] = useState([]);
-  // // console.log(data.TokoKomputer_Products)
-  // useEffect(()=>{
-    
-  // },[cat]);
+  console.log(data.TokoKomputer_Products)
       return(
         <>
-        <Navbar/>
       <Container>
-        { data.TokoKomputer_Products.map(item=>(
+        { data.TokoKomputer_Products.map(item =>(
             <Product item={item} key={item.id} />
         ) )}
       </Container>

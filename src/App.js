@@ -17,6 +17,7 @@ import CreateProduct from "./component/CreateProduct/CreateProduct";
 import CreateUser from './component/GetData/index'
 import MutationUsers from "./component/apollo Client/MutationUsers/MutationUsers";
 import FormPembeli from "./component/FormPembelian/FormPembeli/FormPembeli";
+import HomeProduct from "./component/Product/HomeProduct";
 
 function App() {
   const user = true
@@ -25,7 +26,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
-        <Route path="products/" element={<Products />} />
+        <Route path="products/" element={<HomeProduct />} />
         <Route path="products/:category/" element={<ProductList />} />
         <Route path="product/:id/" element={<Product/>} />
         <Route path="cart/" element={<Cart />} />

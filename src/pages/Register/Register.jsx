@@ -21,13 +21,17 @@ const Wrapper = styled.div`
 const Title = styled.div`
     
 `;
-const Form = styled.form`
+const Blok = styled.div`
     display: flex;
+    flex-wrap: wrap;
+`
+const Form = styled.form`
+
     flex-wrap: wrap;
 `;
 const Input = styled.input`
     flex: 1;
-    min-width: 40%;
+    min-width: 95%;
     margin: 20px 10px 0px 0px;
     padding: 10px;
 `;
@@ -108,7 +112,7 @@ const Register = () => {
     <Container>
       <Wrapper>
       <Title>DATA BUYING</Title>
-
+    <Blok>
     <Form onSubmit={handleSubmit}>
       {inputs &&
         inputs.map((input, inputIdx) => (
@@ -130,6 +134,7 @@ const Register = () => {
         </Agreement>
         <Button type='submit'>submit</Button>
     </Form>
+    </Blok>
     </Wrapper>
     </Container>
   )

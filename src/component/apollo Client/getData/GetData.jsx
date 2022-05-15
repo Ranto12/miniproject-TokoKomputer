@@ -1,7 +1,4 @@
 import { useState, useEffect } from "react";
-import Products from "../../Product/Products";
-import { BeatLoader } from "react-spinners";
-import { useLazyQuery, useQuery } from "@apollo/client";
 import {GetProductList} from '../Query';
 
 

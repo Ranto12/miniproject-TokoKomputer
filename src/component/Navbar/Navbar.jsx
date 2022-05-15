@@ -5,7 +5,10 @@ import styled from 'styled-components'
 import { mobile } from '../../respondsive';
 import { Link } from 'react-router-dom';
 
+
 const Container = styled.div`
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; 
 
     height: 60px;
   ${mobile({backgroundColor: "red"})}

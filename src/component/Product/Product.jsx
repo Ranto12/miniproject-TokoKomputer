@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
+// import Product from '../../pages/Product/Product';
 
 
 const Info = styled.div`
@@ -68,10 +69,7 @@ transition: all 0.5s ease;
 
 
 function Product({item}) {
-  const {id} = useParams();
-  useEffect(()=>{
-    console.log(`id router ${id}`)
-  })
+ 
 
   console.log(item.id)
   return (
@@ -83,7 +81,7 @@ function Product({item}) {
           <ShoppingCartOutlined />
         </Icon>
         <Icon>
-          <Link to={`/product/${item.id}`}>
+          <Link to={`/product/${item.id}/`}>
           <SearchOutlined/>
           </Link>
         </Icon>
@@ -91,8 +89,6 @@ function Product({item}) {
           <FavoriteBorderOutlined/>
         </Icon>
       </Info>
-        
-      
     </Container>
   )
 }
