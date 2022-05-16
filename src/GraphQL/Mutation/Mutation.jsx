@@ -7,3 +7,10 @@ export const ADD_USERS = gql`
   }
 }
 `
+export const InsetMutasiPembelian = gql`
+  mutation MyMutation($object: TokoKomputer_MutasiPembelian_insert_input!) {
+  insert_TokoKomputer_MutasiPembelian_one(object: $object) {
+    id
+  }
+}
+`

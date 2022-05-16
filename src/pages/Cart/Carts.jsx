@@ -268,7 +268,7 @@ const Carts = ({item}) => {
                           currency: "IDR",
                         })}</SummaryItemPrice>
                     </SummaryItem>
-                    <Link to='/register'>
+                    <Link to='/mutasiPembelian'>
                         <Button>
                             CHECKOUT NOW
                         </Button>

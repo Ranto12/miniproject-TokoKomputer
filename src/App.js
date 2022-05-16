@@ -18,6 +18,8 @@ import CreateUser from './component/GetData/index'
 import MutationUsers from "./component/apollo Client/MutationUsers/MutationUsers";
 import FormPembeli from "./component/FormPembelian/FormPembeli/FormPembeli";
 import HomeProduct from "./component/Product/HomeProduct";
+import MutasiPembelian from "./component/MutasiPembelian/MutasiPembelian";
+import MutationFinish from "./component/MutasiPembelian/MutationFinish";
 
 function App() {
   const user = true
@@ -34,6 +36,9 @@ function App() {
         <Route path="register/" element={<Register />} />
         <Route path="cart/" element={<Cart />} />
         <Route path="mutation/" element={<MutationUsers />} />
+        <Route path="mutasiPembelian/" element={<MutasiPembelian />} />
+        <Route path="MutationFinish/" element={<MutationFinish />} />
+
 
       </Routes>
      </Router>
@@ -42,6 +47,7 @@ function App() {
     // <MutationUsers/>
     // <Planets/>
     // <FormPembeli/>
+    // <MutasiPembelian/>
   )
 }
 

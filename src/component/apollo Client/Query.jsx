@@ -113,4 +113,17 @@ export const InsetMutasiPembelian = gql`
     id
   }
 }
+
 `;
+
+export const GetMutationData = gql`
+  query MyQuery {
+  TokoKomputer_MutasiPembelian {
+    id
+    nama
+    email
+    alamat
+    noHp
+  }
+}
+`
