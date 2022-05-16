@@ -81,11 +81,36 @@ export const ADD_USERS = gql`
   }
 `;
 
-export const UpdateData = gql`
-  mutation MyMutation($id1: Int!, brand:  String!) {
-  update_TokoKomputer_Products_by_pk(pk_columns: {id: $id1}, _set: {brand: $brand, categori: $categori}) {
+export const GetDataCart = gql`
+query GetDataCarts {
+  TokoKomputer_Cart {
+    brand
+    categori
+    color
+    jumlah
+    id
+    nama
+    price
+    spesifikasi
+    img
+  }
+}
+`
+
+
+export const UpdateCartEJumlahItem = gql`
+mutation MyMutation($id: Int!, $jumlah: Int!) {
+  update_TokoKomputer_Cart_by_pk(pk_columns: {id: $id}, _set: {jumlah: $jumlah}) {
+    jumlah
+  }
+}
+`
+
+
+export const InsetMutasiPembelian = gql`
+  mutation MyMutation($object: TokoKomputer_MutasiPembelian_insert_input!) {
+  insert_TokoKomputer_MutasiPembelian_one(object: $object) {
     id
   }
 }
-
-`
+`;

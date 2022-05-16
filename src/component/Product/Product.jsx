@@ -69,9 +69,8 @@ transition: all 0.5s ease;
 
 
 function Product({item}) {
- 
-
-  console.log(item.id)
+  
+  
   return (
     <Container>
       <Circle/>

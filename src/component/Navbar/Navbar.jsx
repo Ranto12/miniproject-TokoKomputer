@@ -78,9 +78,14 @@ const Navbar = () => {
                 </Language>
             </Letf>
             <Center>
-                <Logo>J.Kom</Logo>
+                <Logo>
+                   <LINK to='/home'>
+                    J.Kom
+                    </LINK>
+                </Logo>
             </Center>
             <Right>
+            
                 <MenuItems>
                 <LINK to='/products'>
                     PRODUCT
