@@ -5,8 +5,8 @@ import Newslleter from '../../component/Newsletter/Newsletter';
 import Footer from '../../component/Footer/Footer'
 import { Add, Remove } from '@material-ui/icons';
 import { useState } from 'react';
-import { GetProductById, GetProductList } from '../../component/apollo Client/Query';
-import {  useQuery } from '@apollo/client';
+import { GetDataCart, GetProductById, GetProductList, insertDataToCart } from '../../component/apollo Client/Query';
+import {  useMutation, useQuery } from '@apollo/client';
 import {useLocation, useParams} from 'react-router';
 
 
@@ -85,9 +85,7 @@ const Total = styled.span`
 
 const Product = () => {
     const { id } = useParams();
-
     const [count, setCount] = useState(1);
-    
     const {data, error, loading} = useQuery(GetProductById,{variables:{
         _eq : id
     }
@@ -95,16 +93,45 @@ const Product = () => {
     //     console.log("complate" + data);
     // }
    });
+
+   const [InsetDataCart,{loadingCart = loading, datacart = data, errocrcart = error}] = useMutation(insertDataToCart,{
+    onCompleted:(datacart)=>{
+        console.log(datacart)
+    }
+});
     if(loading) return <h1>spinner...</h1>
     if(error) return <h1>ini eror</h1>
 
+ 
 
     console.log(data.TokoKomputer_Products)
-    const img = data.TokoKomputer_Products[0].img;
     const nama =  data.TokoKomputer_Products[0].nama;
-    const spesifikasi =  data.TokoKomputer_Products[0].spesifikasi;
+    const img = data.TokoKomputer_Products[0].img;
+    const brand = data.TokoKomputer_Products[0].brand
     const price =  data.TokoKomputer_Products[0].price;
+    const spesifikasi =  data.TokoKomputer_Products[0].spesifikasi;
+    const color = data.TokoKomputer_Products[0].color;
+    const categori = data.TokoKomputer_Products[0].categori
     // console.log(nama)
+
+    const handleSubmit = (e) =>{
+        e.preventDefault();
+        InsetDataCart({
+            variables:{
+                object:{
+                    nama: nama,
+                    img: img,
+                    brand: brand,
+                    price: price,
+                    spesifikasi: spesifikasi,
+                    jumlah: count,
+                    color: color,
+                    categori: categori
+                }
+            }
+        })
+    }
+
 
     const handleCounter = () =>{
         setCount(count + 1);
@@ -149,7 +176,7 @@ const Product = () => {
                     </Klik>
                     </Increment>
                     {/* <Button onSubmit={onSubmitSearch}>cari</Button> */}
-                    <Button onSubmit={()=>{}}>Tambahkan Keranjang</Button>
+                    <Button onSubmit={handleSubmit}>Tambahkan Keranjang</Button>
                 </AmountContainer>
                 <Title>
                     {Total.toLocaleString("id-ID", {

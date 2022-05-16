@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client';
 import { Add, Remove } from '@material-ui/icons';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
 import Anouncement from '../../component/Anouncement/Anouncement';
 import { UpdateCartEJumlahItem } from '../../component/apollo Client/Query';
@@ -153,17 +153,17 @@ const Button = styled.button`
 `;
 
 
-
-
-
-
-
-
 const Carts = ({item}) => {
+    const navigate = useNavigate()
     const [count, setCount] = useState(item.jumlah);
     const [UpdateJumlah, {data, error, loading}] = useMutation(UpdateCartEJumlahItem);
     if(loading) return <p>loading ......</p>
     if(error) return <p>{error}</p>
+
+    const handleClick = () => {
+        navigate('/mutasiPembelian');
+     }    
+ 
 
     const handleUpdateJumlah = (e) =>{
         e.preventDefault();
@@ -268,11 +268,9 @@ const Carts = ({item}) => {
                           currency: "IDR",
                         })}</SummaryItemPrice>
                     </SummaryItem>
-                    <Link to='/mutasiPembelian'>
-                        <Button>
+                        <Button onClick={handleClick} >
                             CHECKOUT NOW
                         </Button>
-                    </Link>
                 </Summary>
             </Buttom>
         </Wrapper>

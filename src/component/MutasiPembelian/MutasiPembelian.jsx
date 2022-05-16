@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
  import { useMutation } from '@apollo/client';
 import { InsetMutasiPembelian } from '../../GraphQL/Mutation/Mutation';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
     width: 100vw;
@@ -50,6 +50,7 @@ const Button = styled.button`
 
 
 const MutasiPembelian = () => {
+    const navigate = useNavigate();
   const [inputs, setInputs] = useState([
     {
       name: "nama",
@@ -105,7 +106,14 @@ const MutasiPembelian = () => {
         }
       }
     })
+    navigate('/MutationFinish');
   }
+
+  
+//   const handleClick = () => {
+//     navigate('/MutationFinish');
+//  }    
+
    
 
   return (
@@ -132,11 +140,11 @@ const MutasiPembelian = () => {
         <Agreement>
           By Create an account, I consent to the processing of my personal data in according with the <b>PRIVACY POLICY</b>
         </Agreement>
-        <Link to='/MutationFinish'> 
-        <Button type='submit'>
+        {/* <Link to='/MutationFinish'>  */}
+        <Button type='submit' >
             submit
         </Button>
-        </Link>
+        {/* </Link> */}
     </Form>
     </Blok>
     </Wrapper>

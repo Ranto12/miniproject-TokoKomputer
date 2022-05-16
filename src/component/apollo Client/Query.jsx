@@ -97,6 +97,14 @@ query GetDataCarts {
 }
 `
 
+export const insertDataToCart = gql`
+  mutation MyMutation($object: TokoKomputer_Cart_insert_input!) {
+  insert_TokoKomputer_Cart_one(object: $object) {
+    id
+  }
+}
+`
+
 
 export const UpdateCartEJumlahItem = gql`
 mutation MyMutation($id: Int!, $jumlah: Int!) {
@@ -127,3 +135,4 @@ export const GetMutationData = gql`
   }
 }
 `
+
