@@ -25,7 +25,7 @@ const Cart = () => {
   return (
     <div>
        <Navbar/>
-       <Anouncement/>
+       <Anouncement />
         {Cart?.map((item)=>{
             return(
                 <Carts item = {item} key={item.id} />
