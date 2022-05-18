@@ -115,14 +115,39 @@ mutation MyMutation($id: Int!, $jumlah: Int!) {
 `
 
 
+// export const InsetMutasiPembelian = gql`
+//   mutation MyMutation( 
+//     $jumlah: Int! 
+//     $brand:String! 
+//     $categori:String! 
+//     $color:String! 
+//     $img:String! 
+//     $nama:String! 
+//     $price:Int! 
+//     $spesifikasi:String!) {
+//   insert_TokoKomputer_MutasiPembelian_one(
+//     jumlah: $jumlah 
+//     brand:$brand
+//     categori:$categori
+//     color:$color
+//     img:$img 
+//     nama:$nama
+//     price:$price
+//     spesifikasi:$spesifikasi
+//   ) {
+//     id
+//   }
+// }
+// `;
+
 export const InsetMutasiPembelian = gql`
-  mutation MyMutation($object: TokoKomputer_MutasiPembelian_insert_input!) {
-  insert_TokoKomputer_MutasiPembelian_one(object: $object) {
+mutation MyMutation($object: TokoKomputer_Cart_insert_input!) {
+  insert_TokoKomputer_Cart_one(object: $object) {
     id
   }
 }
 
-`;
+`
 
 export const GetMutationData = gql`
   query MyQuery {
@@ -136,3 +161,35 @@ export const GetMutationData = gql`
 }
 `
 
+export const GetDataJumlahID = gql`
+  query MyQuery {
+  TokoKomputer_Cart {
+    id
+  }
+}
+`
+
+export const IncrementJumlah = gql`
+mutation MyMutation($id: Int!) {
+  update_TokoKomputer_Cart_by_pk(pk_columns: {id: $id}, _inc: {jumlah: 1}) {
+    id
+    jumlah
+  }
+}
+`
+export const DecrementJumlah = gql`
+mutation MyMutation($id: Int!) {
+  update_TokoKomputer_Cart_by_pk(pk_columns: {id: $id}, _inc: {jumlah: -1}) {
+    id
+    jumlah
+  }
+}
+`
+
+export const DeleteDataCart = gql`
+mutation MyMutation($id: Int!) {
+  delete_TokoKomputer_Cart_by_pk(id: $id) {
+    id
+  }
+}
+`;

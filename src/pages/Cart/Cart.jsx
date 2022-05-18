@@ -1,4 +1,5 @@
 import { useQuery } from "@apollo/client"
+import { useEffect, useState } from "react";
 import Anouncement from "../../component/Anouncement/Anouncement";
 import { GetDataCart } from "../../component/apollo Client/Query"
 import Footer from "../../component/Footer/Footer";
@@ -7,24 +8,29 @@ import Carts from "./Carts";
 
 
 const Cart = () => {
-    const {data, error, loading} = useQuery(GetDataCart);
+  const [Cart, setCart] = useState()
+    const {data, error, loading, refetch} = useQuery(GetDataCart, {
+      onCompleted:(data)=>{
+        setCart(data.TokoKomputer_Cart);
+      }
+      ,fetchPolicy: "network-only"
+    });
+   
+
     if(loading) return <p>loading ....</p>
     if (error) return <p>eror....</p>
-    console.log(data.TokoKomputer_Cart)
+
+    
 
   return (
     <div>
        <Navbar/>
        <Anouncement/>
-       
-       
-        {data.TokoKomputer_Cart.map((item)=>{
+        {Cart?.map((item)=>{
             return(
                 <Carts item = {item} key={item.id} />
             )
         })}
-        
-
         <Footer/>
     </div>
   )

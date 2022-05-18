@@ -1,9 +1,11 @@
 import { Badge } from '@material-ui/core';
 import { Search, ShoppingCartOutlined } from '@material-ui/icons';
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { mobile } from '../../respondsive';
 import { Link } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { GetDataJumlahID } from '../apollo Client/Query';
 
 
 const Container = styled.div`
@@ -65,6 +67,13 @@ const LINK = styled(Link)`
 `
 
 const Navbar = () => {
+    const [iconNumber, setIconNumber] = useState(0);
+
+    const {data, loading, error} = useQuery(GetDataJumlahID);
+    if(loading) return <p>loading....</p>;
+    if(error) return <p>Eror {error}</p>
+    /* console.log(setIconNumber) */
+    console.log(data.TokoKomputer_Cart[iconNumber])
   return (
     <Container>
         <Wrapper>
@@ -102,7 +111,8 @@ const Navbar = () => {
                 </LINK>
                 </MenuItems>*/}
                 <MenuItems>
-                <Badge badgeContent={10} color="primary">
+                
+                <Badge badgeContent={2} color="primary">
                 <LINK to='/cart'>
                 <ShoppingCartOutlined />
                 </LINK>    

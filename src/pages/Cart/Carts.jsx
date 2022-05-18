@@ -1,10 +1,11 @@
 import { useMutation } from '@apollo/client';
-import { Add, Remove } from '@material-ui/icons';
-import { useState } from 'react';
+import { Add, Delete, Remove } from '@material-ui/icons';
+import { useState, useEffect } from 'react';
 import { Link , useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
 import Anouncement from '../../component/Anouncement/Anouncement';
-import { UpdateCartEJumlahItem } from '../../component/apollo Client/Query';
+import { DecrementJumlah, GetDataCart, IncrementJumlah, DeleteDataCart } from '../../component/apollo Client/Query';
+import Buttoncart from '../../component/Button/Buttoncart';
 
 
 const Container = styled.div`
@@ -154,43 +155,48 @@ const Button = styled.button`
 
 
 const Carts = ({item}) => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const [count, setCount] = useState(item.jumlah);
-    const [UpdateJumlah, {data, error, loading}] = useMutation(UpdateCartEJumlahItem);
-    if(loading) return <p>loading ......</p>
-    if(error) return <p>{error}</p>
+    const [IncrementJumlahData] = useMutation(IncrementJumlah , {refetchQueries: GetDataCart} );
+    const [DecrementJumlahData] = useMutation(DecrementJumlah , {refetchQueries: GetDataCart} );
+    const [DeleteData] = useMutation(DeleteDataCart,{refetchQueries: GetDataCart});
+    // if(loading) return <p>loading ......</p>
+    // if(error) return <p>{error}</p>
+
+
 
     const handleClick = () => {
         navigate('/mutasiPembelian');
      }    
- 
 
-    const handleUpdateJumlah = (e) =>{
+    const handleIncrement = (e) =>{
         e.preventDefault();
-        UpdateJumlah({
-            variables :{
-                object:{
-                    id: item.id,
-                    jumlah : count
-                }
-            }
-        })
+        IncrementJumlahData({variables:{
+            id: item.id
+        }})
+    }
+    const handleDecrement = (e) =>{
+        e.preventDefault();
+        DecrementJumlahData({variables:{
+            id: item.id
+        }})
     }
 
-
-    const handleIncrement = () =>{
-        setCount(count + 1);
+    const handleDelete = (e) =>{
+        e.preventDefault();
+        DeleteData({variables:{
+            id: item.id
+        }})
     }
-    const handleDecrement = () =>{
-        setCount(count - 1);
-    }
+    
+   
     
   
     const total = item.jumlah * item.price;
     const Shipping = 2 * total / 100;
     const Discound = 10 * Shipping / 100;
     const Total = total + Shipping + Discound;
- 
+    
     
   return (
     <Container>
@@ -218,12 +224,13 @@ const Carts = ({item}) => {
                     </Details>
                 </ProductDetail>
                 <PriceDetail>
-                    <ProductAmountContainer  >
+                    <ProductAmountContainer >
                         
-                        {/* <Add  /> */}
+                        <Add onClick={handleIncrement}/>
                         
-                        <ProductAmount>jumlah : {item.jumlah}</ProductAmount>
-                        {/* <Remove/> */}
+                        <ProductAmount>{item.jumlah}</ProductAmount>
+                        <Remove onClick={handleDecrement}/>
+                        <Delete onClick={handleDelete} />
                     </ProductAmountContainer>
                     <ProductPrice>{item.price.toLocaleString("id-ID", {
                           style: "currency",
@@ -254,7 +261,7 @@ const Carts = ({item}) => {
                           currency: "IDR",
                         })}</SummaryItemPrice>
                     </SummaryItem>
-                    <SummaryItem>
+                    <SummaryItem >
                         <SummaryItemText>Shipping Discount</SummaryItemText>
                         <SummaryItemPrice>{Discound.toLocaleString("id-ID", {
                           style: "currency",
@@ -268,7 +275,7 @@ const Carts = ({item}) => {
                           currency: "IDR",
                         })}</SummaryItemPrice>
                     </SummaryItem>
-                        <Button onClick={handleClick} >
+                        <Button onClick={handleClick}>
                             CHECKOUT NOW
                         </Button>
                 </Summary>

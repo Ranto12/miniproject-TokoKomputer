@@ -29,7 +29,7 @@ function Products ({cat, filter, sort }){
   if(loading) return <Loading>spinner...</Loading>
   if (error) return <Loading>Somting went wrong</Loading>
 
-  console.log(data.TokoKomputer_Products)
+  // console.log(data.TokoKomputer_Products)
       return(
         <>
       <Container>

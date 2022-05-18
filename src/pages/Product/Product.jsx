@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { GetDataCart, GetProductById, GetProductList, insertDataToCart } from '../../component/apollo Client/Query';
 import {  useMutation, useQuery } from '@apollo/client';
 import {useLocation, useParams} from 'react-router';
+import Buttoncart from '../../component/Button/Buttoncart';
 
 
 const Container =styled.div`
@@ -104,7 +105,7 @@ const Product = () => {
 
  
 
-    console.log(data.TokoKomputer_Products)
+    // console.log(data.TokoKomputer_Products)
     const nama =  data.TokoKomputer_Products[0].nama;
     const img = data.TokoKomputer_Products[0].img;
     const brand = data.TokoKomputer_Products[0].brand
@@ -112,10 +113,13 @@ const Product = () => {
     const spesifikasi =  data.TokoKomputer_Products[0].spesifikasi;
     const color = data.TokoKomputer_Products[0].color;
     const categori = data.TokoKomputer_Products[0].categori
-    // console.log(nama)
+    
+
+    // console.log("data toko komputer" +  data.)
 
     const handleSubmit = (e) =>{
         e.preventDefault();
+        console.log("nama"+nama)
         InsetDataCart({
             variables:{
                 object:{
@@ -130,6 +134,7 @@ const Product = () => {
                 }
             }
         })
+        
     }
 
 
@@ -156,6 +161,9 @@ const Product = () => {
                 <Desc>
                     {spesifikasi}
                 </Desc>
+                <Desc>
+                    {color}
+                </Desc>
                 <Price>
                     {price.toLocaleString("id-ID", {
                           style: "currency",
@@ -176,7 +184,10 @@ const Product = () => {
                     </Klik>
                     </Increment>
                     {/* <Button onSubmit={onSubmitSearch}>cari</Button> */}
-                    <Button onSubmit={handleSubmit}>Tambahkan Keranjang</Button>
+                    {/* <Button>
+                       
+                        </Button> */}
+                        <Buttoncart item={data.TokoKomputer_Products[0]} count={count} />
                 </AmountContainer>
                 <Title>
                     {Total.toLocaleString("id-ID", {

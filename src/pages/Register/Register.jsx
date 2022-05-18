@@ -89,7 +89,7 @@ const Register = () => {
 
   const [addUsers, {data, loading, error}]= useMutation(ADD_USERS, {
     onCompleted: (data) => {
-      console.log(data)
+      // console.log(data)
     }
   });
 
