@@ -160,8 +160,6 @@ const Carts = ({item}) => {
     const [IncrementJumlahData] = useMutation(IncrementJumlah , {refetchQueries: GetDataCart} );
     const [DecrementJumlahData] = useMutation(DecrementJumlah , {refetchQueries: GetDataCart} );
     const [DeleteData] = useMutation(DeleteDataCart,{refetchQueries: GetDataCart});
-    // if(loading) return <p>loading ......</p>
-    // if(error) return <p>{error}</p>
 
 
 
@@ -202,23 +200,23 @@ const Carts = ({item}) => {
     <Container>
        
         <Wrapper>
-            <Title>YOUR BAG</Title>
-            <Top>
+            {/* <Title>YOUR BAG</Title> */}
+            {/* <Top>
                 <TopButton>CONTINUE SHOPPING</TopButton>
                 <TopTexts>
                     <TopText>Shopping Bag({item.id})</TopText>
                     <TopText>Yout Wishlist (0)</TopText>
                 </TopTexts>
                 <TopButton type='filled'>CHECKOUT NOW</TopButton>
-            </Top>
+            </Top> */}
             <Buttom>
-                <Info>
+                {/* <Info> */}
                 <Product>
                 <ProductDetail>
                     <Image src={item.img}/>
                     <Details>
                         <ProductName><b>Product:</b> {item.nama} </ProductName>
-                        <ProductId><b>ID</b> {item.id}</ProductId>
+                        {/* <ProductId><b>ID</b> {item.id}</ProductId> */}
                         <ProductBrand><b>BRAND</b> {item.brand} </ProductBrand>
                         <Spesification><b>SPESIFICATION: </b> {item.spesifikasi}</Spesification>
                     </Details>
@@ -244,8 +242,8 @@ const Carts = ({item}) => {
                 </Product>
                 <HR/>
                 
-                </Info>
-                <Summary>
+                {/* </Info> */}
+                {/* <Summary>
                     <SummaryTitle>ORDER SUMMARY</SummaryTitle>
                     <SummaryItem>
                         <SummaryItemText>Subtotal</SummaryItemText>
@@ -278,10 +276,9 @@ const Carts = ({item}) => {
                         <Button onClick={handleClick}>
                             CHECKOUT NOW
                         </Button>
-                </Summary>
+                </Summary> */}
             </Buttom>
         </Wrapper>
-
     </Container>
   )
 }

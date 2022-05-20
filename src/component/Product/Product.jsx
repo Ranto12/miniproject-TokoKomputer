@@ -76,17 +76,17 @@ function Product({item}) {
       <Circle/>
       <Image  src={item.img}/>
       <Info>
-        <Icon>
+        {/* <Icon>
           <ShoppingCartOutlined />
-        </Icon>
+        </Icon> */}
         <Icon>
           <Link to={`/product/${item.id}/`}>
           <SearchOutlined/>
           </Link>
         </Icon>
-        <Icon>
+        {/* <Icon>
           <FavoriteBorderOutlined/>
-        </Icon>
+        </Icon> */}
       </Info>
     </Container>
   )

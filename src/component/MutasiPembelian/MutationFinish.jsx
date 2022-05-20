@@ -12,9 +12,12 @@ const Container =styled.div`
     background-color: #6e6c6c;
     width: 100%;
     right: 100%;
+    display: inline-block;
 `
 const Table = styled.table`
     width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
 `
 const TH = styled.th`
     border: 1px solid lightgrey;
@@ -25,18 +28,30 @@ const TH = styled.th`
 `
 const TR = styled.tr`
     margin: 10px;
+    border: 1px white;
 `
 const TD = styled.td`
     color: white;
 `
+const Image= styled.img`
+width: 100px;
+margin-right: 0;
+
+`;
 const Footers = styled.div`
 width: 100%;
 position: absolute;
 margin-bottom: 0px;
-margin-top: 1000px;
+margin-top: 1000px ;
 `
+const HR = styled.hr`
+background-color:#000000;
+border: none;
+height: 2px;
+opacity: 50%;
+`;
 
-const Nama = styled.div
+
 
 const MutationFinish = () => {
     const {data, error, loading} = useQuery(GetMutationData);
@@ -52,16 +67,18 @@ const MutationFinish = () => {
         <Table>
              {/* <MutationPage item ={item} key={item.id} loading={loading} /> */}
             <TR>
+            <TH>Nomor</TH>
             <TH>nama</TH>
             <TH>alamat</TH>
             <TH>email</TH>
             <TH>noHp</TH>
-            <TH>nama barang</TH>
-            <TH>sepesifikasi</TH>
-            <TH>total</TH>
+            <TH>BARCODE</TH>
             </TR>
             {data.TokoKomputer_MutasiPembelian.map(item=>(
             <TR>
+            <TD>
+                <p>{item.id}</p>
+            </TD>
             <TD>
                 <p>{item.nama}</p>
             </TD>
@@ -75,13 +92,8 @@ const MutationFinish = () => {
             <p>{item.alamat}</p>
             </TD>
             <TD>
-                <p>{item.noHp}</p>
-            </TD>
-            <TD>
-            <p>{item.email}</p>
-            </TD>
-            <TD>
-            <p>{item.alamat}</p>
+                <Image  src="https://i.ibb.co/5rzPLd4/fed2ccff-d2f3-4e79-9ed7-2e3f073bd5d2.jpg" />
+                
             </TD>
         </TR>
        ))}

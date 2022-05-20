@@ -15,7 +15,7 @@ function Home() {
         <Navbar/>
          <Anouncement/>
         <Slider/>
-        <Categories/>
+        {/* <Categories/> */}
         {/* <HomeProduct/> */}
         <Products/>
         {/* <Newsletter/> */}

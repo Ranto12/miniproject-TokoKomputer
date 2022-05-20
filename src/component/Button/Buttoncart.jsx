@@ -8,8 +8,8 @@ const Buttoncart = ({item, count}) => {
             console.log(datacart)
         }
     });
-        if(loading) return <h1>spinner...</h1>
-        if(error) return <h1>ini eror</h1>
+        // if(loading) return <h1>spinner...</h1>
+        // if(error) return <h1>ini eror</h1>
 
     console.log("ini item" + item.nama)
 

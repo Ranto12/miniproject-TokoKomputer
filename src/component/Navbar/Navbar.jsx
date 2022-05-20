@@ -81,8 +81,9 @@ const Navbar = () => {
                 <Language>
                     IN
                     <SearchContainer>
-                        <Input/>
-                        <Search/>
+                     {/* <Input/>
+                        <Search/> */}
+                        
                     </SearchContainer>
                 </Language>
             </Letf>

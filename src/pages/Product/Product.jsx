@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import Navbar from '../../component/Navbar/Navbar'
 import Announcement from '../../component/Anouncement/Anouncement'
-import Newslleter from '../../component/Newsletter/Newsletter';
+// import Newslleter from '../../component/Newsletter/Newsletter';
 import Footer from '../../component/Footer/Footer'
 import { Add, Remove } from '@material-ui/icons';
 import { useState } from 'react';
-import { GetDataCart, GetProductById, GetProductList, insertDataToCart } from '../../component/apollo Client/Query';
+import { GetProductById,insertDataToCart } from '../../component/apollo Client/Query';
 import {  useMutation, useQuery } from '@apollo/client';
 import {useLocation, useParams} from 'react-router';
 import Buttoncart from '../../component/Button/Buttoncart';
@@ -62,14 +62,14 @@ const Amount = styled.span`
     margin: 0px 5px;
     
 `;
-const Button = styled.button`
-    padding: 15px;
-    margin-left:30px;
-    border: 2px solid teal;
-    background-color: white;
-    cursor: pointer;
-    font-weight: 500;
-`;
+// const Button = styled.button`
+//     padding: 15px;
+//     margin-left:30px;
+//     border: 2px solid teal;
+//     background-color: white;
+//     cursor: pointer;
+//     font-weight: 500;
+// `;
 
 const Klik = styled.div`
 cursor: pointer;
@@ -77,10 +77,6 @@ cursor: pointer;
 
 const Increment = styled.div`
 cursor: pointer;
-`;
-
-const Total = styled.span`
-    
 `;
 
 
@@ -158,7 +154,7 @@ const Product = () => {
             </ImgContainer>
             <InfoContainer>
                 <Title>{nama}</Title>
-                <Desc>
+                <Desc >
                     {spesifikasi}
                 </Desc>
                 <Desc>
@@ -183,7 +179,7 @@ const Product = () => {
                     <Add />
                     </Klik>
                     </Increment>
-                    {/* <Button onSubmit={onSubmitSearch}>cari</Button> */}
+                    {/* <Button onSubmit={handleSubmit}>ADD CART</Button> */}
                     {/* <Button>
                        
                         </Button> */}

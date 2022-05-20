@@ -95,7 +95,7 @@ function Slider() {
                 <InfoContainer>
                     <Title>{item.title}</Title>
                     <Description>{item.desc}</Description>
-                    <Button>Shop Now</Button>
+                    {/* <Button>Shop Now</Button> */}
                 </InfoContainer>
                 </Slide>
             ))}
